@@ -28,7 +28,7 @@ int main() {
 
 
 /****
-This is a Memoization method .
+This is a Dynamic Programming method .
 Its time complexity is O(m*n)
 where m and n are the length of the strings.
 ****/
