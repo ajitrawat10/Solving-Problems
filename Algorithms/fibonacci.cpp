@@ -27,7 +27,7 @@ int main(){
 
 /*
  Second method
- It is an Memoization way to find nth fibonacci number.
+ It is an Dynamic Programming way to find nth fibonacci number.
  Its time complexity is O(n).
  */
 
