@@ -1,0 +1,93 @@
+Problem Link - https://www.codechef.com/JULY20B/problems/PTMSSNG/
+
+
+Code
+
+#include<bits/stdc++.h>
+#define endl "\n"
+#define ll long long
+using namespace std;
+    
+int main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    // freopen("input.txt", "r",  stdin); 
+    // freopen("output.txt", "w", stdout); 
+
+    int t;cin>>t;
+    while(t--){
+     int n;cin>>n;
+     ll a[n],b[n];
+     ll maxi=1e12;
+     unordered_map<ll,ll> sum;
+     for (int i=0;i<n;i++){
+     	cin>>a[i];
+     	sum[a[i]]++;
+     	maxi=min(maxi,a[i]);
+     }
+
+	 for (int i=0;i<n;i++){
+     	cin>>b[i];
+     	sum[b[i]]++;
+     	maxi=min(maxi,b[i]);
+     }
+
+      unordered_map<ll,ll> correct;
+      bool found=1;
+      for (auto q:sum){
+      	 if (q.second%2){
+      	 	found=0;
+      	 	break;
+      	 }
+      	 else{
+      	 	correct[q.first]=q.second/2;
+      	 }
+      }
+      if (!found){
+      	cout<<-1<<endl;
+      	continue;
+      }
+        unordered_map<ll,ll> res=correct;
+      
+        vector<ll> v1,v2;
+        for (int i=0;i<n;i++){
+        	if (res[a[i]]){
+        		res[a[i]]--;
+           }
+           else{
+           	v1.push_back(a[i]);
+           }
+       }
+      
+     
+       res=correct;
+       for (int i=0;i<n;i++){
+        	if (res[b[i]]){
+        		res[b[i]]--;
+           }
+           else{
+           	v2.push_back(b[i]);
+           }
+       }
+       
+
+       if (v1.size() ==0){
+       	cout<<0<<endl;
+       	continue;
+       }
+
+       if (v1.size()!=v2.size()){
+       	cout<<-1<<endl;
+       	continue;
+       }
+
+       ll cost=0;
+       sort(v1.begin(),v1.end());
+       sort(v2.begin(),v2.end(),greater<int>());
+       for (int i=0;i<v1.size();i++){
+       	cost+=min(2*maxi,min(v1[i],v2[i]));
+       }
+       cout<<cost<<endl;
+}
+return 0;
+}
